@@ -1,0 +1,88 @@
+---
+title: "HDHP model"
+author: "Sanjay Basu"
+date: "6/28/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+install.packages('ipumsr')
+install.packages('dplyr')
+install.packages('srvyr')
+install.packages('MatchIt')
+library(ipumsr, warn.conflicts = FALSE)
+library(dplyr, warn.conflicts = FALSE)
+library(srvyr, warn.conflicts = FALSE)
+library(MatchIt, warn.conflicts = FALSE)
+```
+
+## NHIS/MEPS
+
+import NHIS and MEPS data
+
+```{r nhis}
+setwd("~/Box/Analytics Team/Research/Research projects/HDHP model")
+ddi_nhis <- read_ipums_ddi("nhis_00002.xml")
+nhis <- read_ipums_micro(ddi_nhis)
+ddi_meps <- read_ipums_ddi("meps_00002.xml")
+meps <- read_ipums_micro(ddi_meps)
+```
+
+## LABELS
+
+labeling variables, recoding before match
+
+to match on: {variable} - {NHIS var name} - {MEPS var name} 
+age - AGE - AGE
+sex - SEX - SEX
+race - RACEA - RACEA
+eth - HISPETH - HISPYN
+inc - INCIMPPOINT1 - FTOTVAL
+fam size - FAMSIZE - FAMSIZE
+ins - HIPRIVATEE - HIPRIVATE
+
+```{r labels}
+
+nhis_mod = nhis %>%
+  mutate(age = AGE,
+         age = age*(age<85),
+         female = (SEX == 2),
+         hhinc = INCIMPPOINT1,
+         black = (RACEA == 200),
+         hisp = (HISPETH != 10),
+         hhsize = FAMSIZE*(FAMSIZE<99),
+         privins = ((HIPRIVATEE == 2) | (HIPRIVATEE ==3)),
+         treated = 1,
+         pid = NHISPID) %>%
+  select(age,female, hhinc,black,hisp,hhsize,privins,treated,pid)
+
+meps_mod = meps %>%
+  mutate(age = AGE,
+         age = age*(age<85),
+         female = (SEX==2),
+         hhinc = FTOTVAL*(FTOTVAL!=999999),
+         black = (RACEA==200),
+         hisp = (HISPYN==2),
+         hhsize = FAMSIZE*(FAMSIZE<99),
+         privins = (HIPRIVATE==2),
+         treated = 0,
+         pid = MEPSID) %>%
+  select(age,female, hhinc,black,hisp,hhsize,privins,treated,pid)
+
+
+
+```
+
+## CEM
+
+match NHIS to MEPS
+
+```{r match}
+dat = rbind(nhis_mod,meps_mod)
+set.seed(100)
+mat <- matchit(treated ~ age+female+hhinc+black+hisp+hhsize+privins, dat, method = 'nearest', distance = 'logit', caliper = .10)
+```
+
+
+
