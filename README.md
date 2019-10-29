@@ -5,13 +5,22 @@ High-deductible health plans have become increasingly popular, but recent report
 
 
 Sanjay Basu1,2,3*, Seth A. Berkowitz4, Russell S. Phillips1,5, Zirui Song1,6,7, Aaron Baum8,  Bruce E. Landon1,5,6
+
 1 Center for Primary Care, Harvard Medical School, Boston, Massachusetts
+
 2 Research and Analytics, Collective Health, San Francisco, California
+
 3 School of Public Health, Imperial College, London, United Kingdom
+
 4 General Medicine and Clinical Epidemiology, University of North Carolina, Chapel Hill, North Carolina
+
 5 Division of General Internal Medicine and Primary Care, Department of Medicine, Beth Israel Deaconess Medical Center, Boston, Massachusetts
+
 6 Department of Health Care Policy, Harvard Medical School, Boston, Massachusetts
+
 7 Department of Medicine, Massachusetts General Hospital, Boston, Massachusetts
+
 8 Arnold Institute for Global Health, Mount Sinai School of Medicine, New York, New York
+
 
 *sanjay_basu@hms.harvard.edu
