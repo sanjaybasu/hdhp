@@ -1,5 +1,4 @@
-# hdhp
-Cost and health implications for private employers of transitioning away from high-deductible health plans 
+# Cost and health implications for private employers of transitioning away from high-deductible health plans 
 
 High-deductible health plans have become increasingly popular, but recent reports of potential adverse health behaviors and outcomes associated with such plans have led concerns about their growth. Using a microsimulation model informed by national data from 2,160 employers and 48,300 individuals with employer-sponsored health insurance coverage, we estimated the cost to employers and members of transitioning from high-deductible to standard preferred provider organization health plans, after accounting for the healthier profile of those typically selecting high-deductible plans. We additionally estimated the cost and health implications of switching for common chronic conditions including diabetes, hyperlipidemia and hypertension. We found that, when considering the adverse health impact of high-deductible plans and the typical employer expenses for seeding Health Savings Accounts, the anticipated cost savings to employers and members from high-deductible plans were nullified, and the plans posed potential cost increases to Medicare due to increased disease complications in later life.
 
